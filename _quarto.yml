@@ -4,19 +4,13 @@ project:
 
 website:
   title: "Ariane Damian"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+ 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
     toc: true
+    bootstrap-icons: true
 
 
 

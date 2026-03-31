@@ -1,7 +1,40 @@
 ---
-title: "Ariane Damian"
+title: ""
+page-layout: full
 ---
 
-This is a Quarto website.
+:::{.window-container}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+:::{.window-header}
+Welcome!
+:::
+
+:::{.window-body}
+
+# Hi! [I'm Ariane]{.highlight}
+
+### Scientist, Engineer, and Analyst
+
+```{=html}
+<div class="main-nav-icons">
+  <div class="icon-item">
+    <i class="bi bi-info-circle"></i>
+    <span>about</span>
+  </div>
+  <div class="icon-item">
+    <i class="bi bi-link-45deg"></i>
+    <span>links</span>
+  </div>
+  <div class="icon-item">
+    <i class="bi bi-folder"></i>
+    <span>work</span>
+  </div>
+  <div class="icon-item">
+    <i class="bi bi-envelope-at"></i>
+    <span>contact</span>
+  </div>
+</div>
+```
+:::
+
+:::
