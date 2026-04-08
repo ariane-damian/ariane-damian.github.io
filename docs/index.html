@@ -23,67 +23,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-html-640605f58ae58ee79329c070719e555b.min.css" rel="stylesheet" append-hash="true" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="quarto-light">
+<body>
 
-<div id="quarto-search-results"></div>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -95,10 +54,11 @@ ul.task-list li input[type="checkbox"] {
 <p><button class="header-btn" id="music-btn" onclick="toggleMusic()" title="Toggle ambient music"> <i class="bi bi-music-note-beamed"></i> </button> <button class="header-btn" id="darkmode-btn" onclick="toggleDarkMode()" title="Toggle dark mode"> <i class="bi bi-moon"></i> </button></p>
 </div>
 </div>
-<section id="hi-im-ariane" class="level1 window-body">
+<section id="hi-im-ariane" class="window-body">
 <h1>Hi! <span class="highlight">I’m Ariane</span></h1>
-<section id="scientist-engineer-and-analyst" class="level3">
-<h3 class="anchored" data-anchor-id="scientist-engineer-and-analyst">Scientist, Engineer, and Analyst</h3>
+<h3 id="scientist-engineer-and-analyst" class="anchored">Scientist, Engineer, and Analyst</h3>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 <audio id="ambient-audio" src="relaxing.mp3" loop=""></audio>
 
 <div class="main-nav-icons">
@@ -119,9 +79,6 @@ ul.task-list li input[type="checkbox"] {
     <span>contact</span>
   </div>
 </div>
-
-<!-- Overlay backdrop -->
-<div class="popup-overlay" id="popup-overlay" onclick="closeAllPopups()"></div>
 
 <!-- ABOUT popup -->
 <div class="popup-window" id="popup-about">
@@ -182,22 +139,90 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 <script>
+// ── Z-index management ───────────────────────────────
+let topZ = 200;
+function bringToFront(el) {
+  topZ++;
+  el.style.zIndex = topZ;
+}
+
 // ── Popups ──────────────────────────────────────────
 function openPopup(id) {
-  closeAllPopups();
-  document.getElementById('popup-' + id).classList.add('active');
-  document.getElementById('popup-overlay').classList.add('active');
+  const el = document.getElementById('popup-' + id);
+  if (el.classList.contains('active')) {
+    bringToFront(el);
+    return;
+  }
+  el.classList.remove('closing');
+  el.classList.add('active');
+  bringToFront(el);
 }
+
 function closePopup(id) {
-  document.getElementById('popup-' + id).classList.remove('active');
-  document.getElementById('popup-overlay').classList.remove('active');
+  const el = document.getElementById('popup-' + id);
+  if (!el.classList.contains('active')) return;
+  el.classList.remove('active');
+  el.classList.add('closing');
+  el.addEventListener('animationend', function handler() {
+    el.classList.remove('closing');
+    el.removeEventListener('animationend', handler);
+  });
 }
-function closeAllPopups() {
-  document.querySelectorAll('.popup-window').forEach(p => p.classList.remove('active'));
-  document.getElementById('popup-overlay').classList.remove('active');
-}
+
+document.querySelectorAll('.popup-window').forEach(function(win) {
+  win.addEventListener('mousedown', function() {
+    bringToFront(win);
+  });
+});
+
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeAllPopups();
+  if (e.key === 'Escape') {
+    const active = [...document.querySelectorAll('.popup-window.active')]
+      .sort((a, b) => parseInt(b.style.zIndex || 200) - parseInt(a.style.zIndex || 200));
+    if (active.length) {
+      const id = active[0].id.replace('popup-', '');
+      closePopup(id);
+    }
+  }
+});
+
+// ── Move popups ──────────────────────────────
+document.querySelectorAll('.popup-window').forEach(function(win) {
+  const header = win.querySelector('.popup-header');
+
+  let isDragging = false;
+  let startX, startY, startLeft, startTop;
+
+  header.addEventListener('mousedown', function(e) {
+  if (e.target.closest('.popup-close')) return;
+
+  isDragging = true;
+  bringToFront(win);
+
+  startX = e.clientX;
+  startY = e.clientY;
+
+  startLeft = win.offsetLeft;
+  startTop = win.offsetTop;
+
+  win.style.position = 'fixed'; 
+  win.style.left = startLeft + 'px';
+  win.style.top = startTop + 'px';
+  win.style.transform = 'none';
+  win.style.margin = '0';
+
+  e.preventDefault();
+});
+
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    win.style.left = (startLeft + e.clientX - startX) + 'px';
+    win.style.top  = (startTop  + e.clientY - startY) + 'px';
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
 });
 
 // ── Ambient music ────────────────────────────────────
@@ -229,14 +254,15 @@ function toggleDarkMode() {
 }
 </script>
 </section>
-</section>
 </div>
 
 
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+    tabsets.forEach(function(tabset) {
+      const tabby = new Tabby('#' + tabset.id);
+    });
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -335,7 +361,7 @@ function toggleDarkMode() {
         },
         interactive: true,
         interactiveBorder: 10,
-        theme: 'quarto',
+        theme: 'light-border',
         placement: 'bottom-start',
       };
       if (contentFn) {
@@ -635,7 +661,6 @@ function toggleDarkMode() {
     }
   });
   </script>
-</div> <!-- /content -->
 
 
 
