@@ -1,16 +1,16 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - relaxing.mp3
+    - sharks!.png
 
 website:
   title: "Ariane Damian"
- 
+
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true
+    toc: false
     bootstrap-icons: true
-
-
-
