@@ -2,10 +2,10 @@ project:
   type: website
   output-dir: docs
   resources:
-    - relaxing.mp3
-    - sharks!.png
-    - UI pop up.mp3
-    - UI pop back in.mp3
+    - audio/relaxing.mp3
+    - sharks.png
+    - audio/UI_open.mp3
+    - audio/UI_close.mp3
 
 website:
   title: "Ariane Damian"
