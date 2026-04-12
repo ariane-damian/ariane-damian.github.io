@@ -25,8 +25,10 @@ page-layout: full
 
 ```{=html}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap">
 <audio id="ambient-audio" src="relaxing.mp3" loop></audio>
+<audio id="sfx-open" src="UI pop up.mp3"></audio>
+<audio id="sfx-close" src="UI pop back in.mp3"></audio>
 
 <div class="main-nav-icons">
   <div class="icon-item" onclick="openPopup('about')">
@@ -106,6 +108,18 @@ page-layout: full
 </div>
 
 <script>
+  // ── UI sound  ─────────────────────────────────────
+function playOpen() {
+  const sfx = document.getElementById('sfx-open');
+  sfx.currentTime = 0;
+  sfx.play();
+}
+function playClose() {
+  const sfx = document.getElementById('sfx-close');
+  sfx.currentTime = 0;
+  sfx.play();
+}
+
 // ── Z-index management ───────────────────────────────
 let topZ = 200;
 function bringToFront(el) {
@@ -120,6 +134,7 @@ function openPopup(id) {
     bringToFront(el);
     return;
   }
+  playOpen();
   el.classList.remove('closing');
   el.classList.add('active');
   bringToFront(el);
@@ -128,6 +143,7 @@ function openPopup(id) {
 function closePopup(id) {
   const el = document.getElementById('popup-' + id);
   if (!el.classList.contains('active')) return;
+  playClose();
   el.classList.remove('active');
   el.classList.add('closing');
   el.addEventListener('animationend', function handler() {
@@ -214,6 +230,7 @@ let darkMode = false;
 function toggleDarkMode() {
   const btn = document.getElementById('darkmode-btn');
   darkMode = !darkMode;
+  darkMode ? playOpen(): playClose();
   document.body.classList.toggle('dark-mode', darkMode);
   btn.innerHTML = darkMode
     ? '<i class="bi bi-sun"></i>'

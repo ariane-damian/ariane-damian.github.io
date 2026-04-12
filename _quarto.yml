@@ -4,6 +4,8 @@ project:
   resources:
     - relaxing.mp3
     - sharks!.png
+    - UI pop up.mp3
+    - UI pop back in.mp3
 
 website:
   title: "Ariane Damian"
