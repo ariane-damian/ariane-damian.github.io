@@ -22,7 +22,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: 
     linear-gradient(to bottom, #ffffff 50%, transparent 50%),
-    url('.../images/sharks.png') bottom / cover no-repeat;
+    url('images/sharks.png') bottom / cover no-repeat;
   background-attachment: fixed;
   transition: background 0.3s ease;
 }
@@ -273,7 +273,7 @@ body {
 body.dark-mode {
   background: 
     linear-gradient(to bottom, #0d1b3e 50%, transparent 50%),
-    url('sharks!.png') bottom / cover no-repeat;
+    url('images/sharks.png') bottom / cover no-repeat;
 }
 
 body.dark-mode .window-container {

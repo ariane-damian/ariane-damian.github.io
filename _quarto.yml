@@ -3,16 +3,15 @@ project:
   output-dir: docs
   resources:
     - audio/relaxing.mp3
-    - sharks.png
     - audio/UI_open.mp3
     - audio/UI_close.mp3
-
+    - images/sharks.png
+  
 website:
   title: "Ariane Damian"
 
 format:
   html:
-    theme: none
-    css: styles.css
+    theme: [cosmo, styles/custom.scss]
     toc: false
     bootstrap-icons: true
