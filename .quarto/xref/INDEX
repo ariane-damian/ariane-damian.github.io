@@ -1,23 +1,17 @@
 {
-  "index.qmd": {
-    "index.html": "1533d488"
-  },
   "about.qmd": {
-    "about.html": "2d7308e8"
+    "about.html": "5e6aced1"
   },
-  "contact.qmd": {
-    "contact.html": "60ab41ab"
+  "index.qmd": {
+    "index.html": "a07ea61d"
   },
   "projects/index.qmd": {
-    "index.html": "152f7c1d"
+    "index.html": "c1ca4dc5"
   },
   "projects/project-one/index.qmd": {
-    "index.html": "b38f6e49"
+    "index.html": "4898ac65"
   },
   "projects/project-two/index.qmd": {
-    "index.html": "d5943341"
-  },
-  "reflection.qmd": {
-    "reflection.html": "638b23e9"
+    "index.html": "a3be5fdf"
   }
 }

@@ -26,9 +26,9 @@ page-layout: full
 ```{=html}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap">
-<audio id="ambient-audio" src="relaxing.mp3" loop></audio>
-<audio id="sfx-open" src="UI pop up.mp3"></audio>
-<audio id="sfx-close" src="UI pop back in.mp3"></audio>
+<audio id="ambient-audio" src="audio/relaxing.mp3" loop></audio>
+<audio id="sfx-open" src="audio/UI_open.mp3"></audio>
+<audio id="sfx-close" src="audio/UI_close.mp3"></audio>
 
 <div class="main-nav-icons">
   <div class="icon-item" onclick="openPopup('about')">
