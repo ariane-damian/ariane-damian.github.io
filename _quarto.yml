@@ -6,7 +6,9 @@ project:
     - audio/UI_open.mp3
     - audio/UI_close.mp3
     - images/sharks.png
-  
+    - images/profile_pic.jpeg
+    - cv/Ariane Joie Damian_CV_2026.pdf
+
 website:
   title: "Ariane Damian"
 
@@ -15,3 +17,4 @@ format:
     theme: [cosmo, styles/custom.scss]
     toc: false
     bootstrap-icons: true 
+    anchor-sections: false
