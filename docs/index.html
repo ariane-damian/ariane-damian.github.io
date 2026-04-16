@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f9941465f7566e73e5ba1f41ca2f01f5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f3c402b4cece3d98340ff1e9f5573c59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,6 +102,8 @@ ul.task-list li input[type="checkbox"] {
 <audio id="ambient-audio" src="audio/relaxing.mp3" loop=""></audio>
 <audio id="sfx-open" src="audio/UI_open.mp3"></audio>
 <audio id="sfx-close" src="audio/UI_close.mp3"></audio>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
 <div class="main-nav-icons">
   <div class="icon-item" onclick="openPopup('about')">
@@ -129,11 +131,11 @@ ul.task-list li input[type="checkbox"] {
     <button class="popup-close" onclick="closePopup('about')">✕</button>
   </div>
   <div class="popup-body">
-     <div style="display:flex; align-items:center; gap:20px; margin-bottom:20px;">
+    <div style="display:flex; align-items:center; gap:20px; margin-bottom:20px;">
       <h3 style="margin:0; flex:1;">Hi, I'm Ariane!</h3>
       <img src="images/profile_pic.jpeg" alt="Ariane" style="width:110px; height:110px; border-radius:60%; object-fit:cover; flex-shrink:0; border:2px solid #828283;">
     </div>
-    <p>A Chemical and Pharmaceutical Graduate with a passion for data and visualisation! Currently, I'm completeting my master's degree in Business Analytics in hopes of combining my scientific and engineering background with my interest in uncovering  insights/patterns in data to make a positive impact. </p>
+    <p>A Chemical and Pharmaceutical Graduate with a passion for data and visualisation! Currently, I'm completeting my master's degree in Business Analytics in hopes of combining my scientific and engineering background with my interest in uncovering insights/patterns in data to make a positive impact.</p>
   </div>
 </div>
 
@@ -184,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 <script>
-  // ── UI sound  ─────────────────────────────────────
+// ── UI sound ─────────────────────────────────────
 function playOpen() {
   const sfx = document.getElementById('sfx-open');
   sfx.currentTime = 0;
@@ -253,25 +255,25 @@ document.querySelectorAll('.popup-window').forEach(function(win) {
   let startX, startY, startLeft, startTop;
 
   header.addEventListener('mousedown', function(e) {
-  if (e.target.closest('.popup-close')) return;
+    if (e.target.closest('.popup-close')) return;
 
-  isDragging = true;
-  bringToFront(win);
+    isDragging = true;
+    bringToFront(win);
 
-  startX = e.clientX;
-  startY = e.clientY;
+    startX = e.clientX;
+    startY = e.clientY;
 
-  startLeft = win.offsetLeft;
-  startTop = win.offsetTop;
+    startLeft = win.offsetLeft;
+    startTop = win.offsetTop;
 
-  win.style.position = 'fixed'; 
-  win.style.left = startLeft + 'px';
-  win.style.top = startTop + 'px';
-  win.style.transform = 'none';
-  win.style.margin = '0';
+    win.style.position = 'fixed';
+    win.style.left = startLeft + 'px';
+    win.style.top = startTop + 'px';
+    win.style.transform = 'none';
+    win.style.margin = '0';
 
-  e.preventDefault();
-});
+    e.preventDefault();
+  });
 
   document.addEventListener('mousemove', function(e) {
     if (!isDragging) return;
@@ -306,12 +308,53 @@ let darkMode = false;
 function toggleDarkMode() {
   const btn = document.getElementById('darkmode-btn');
   darkMode = !darkMode;
-  darkMode ? playOpen(): playClose();
+  darkMode ? playOpen() : playClose();
   document.body.classList.toggle('dark-mode', darkMode);
   btn.innerHTML = darkMode
     ? '<i class="bi bi-sun"></i>'
     : '<i class="bi bi-moon"></i>';
 }
+
+// ── Custom cursor ────────────────────────────────────
+(function() {
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+
+  document.addEventListener('mousemove', function(e) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+    ring.style.left   = e.clientX + 'px';
+    ring.style.top    = e.clientY + 'px';
+  });
+
+  document.addEventListener('mousedown', function() {
+    document.body.classList.add('cursor-click');
+  });
+  document.addEventListener('mouseup', function() {
+    document.body.classList.remove('cursor-click');
+  });
+
+  const hoverTargets = 'a, button, .icon-item, .popup-close, .header-btn, .link-item';
+  document.addEventListener('mouseover', function(e) {
+    if (e.target.closest(hoverTargets)) {
+      document.body.classList.add('cursor-hover');
+    }
+  });
+  document.addEventListener('mouseout', function(e) {
+    if (e.target.closest(hoverTargets)) {
+      document.body.classList.remove('cursor-hover');
+    }
+  });
+
+  document.addEventListener('mouseleave', function() {
+    cursor.style.opacity = '0';
+    ring.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', function() {
+    cursor.style.opacity = '1';
+    ring.style.opacity = '1';
+  });
+})();
 </script>
 </section>
 </section>
@@ -319,6 +362,28 @@ function toggleDarkMode() {
 <p><span>© 2025 Ariane Damian</span> <span>·</span> <span>Built with <a href="https://quarto.org" target="_blank" style="color:#eeeeee;">Quarto</a></span></p>
 </div>
 </div>
+<div class="bubbles-container" id="bubbles-container"></div>
+<script>
+(function() {
+  const container = document.getElementById('bubbles-container');
+  const count = 40;
+  for (let i = 0; i < count; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = Math.random() * 60 + 20;
+    b.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}vw;
+      animation-duration: ${Math.random() * 14 + 10}s;
+      animation-delay: ${Math.random() * 12}s;
+      --drift: ${(Math.random() - 0.5) * 120}px;
+      --end-scale: ${0.7 + Math.random() * 0.6};
+    `;
+    container.appendChild(b);
+  }
+})();
+</script>
 
 
 
