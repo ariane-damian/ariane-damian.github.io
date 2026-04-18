@@ -74,6 +74,7 @@ body {
     opacity: 0;
   }
 }
+
 /* ── Custom cursor ───────────────────────────────── */
 * {
   cursor: none !important;
@@ -365,6 +366,47 @@ body.dark-mode #cursor-ring {
   transform: translateY(-3px);
 }
 
+/* ── Work carousel ───────────────────────────────── */
+.work-page-indicator {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.work-project-title {
+  color: #135cda;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 0.2s, transform 0.2s;
+  margin-top: 0;
+}
+
+.work-project-title:hover {
+  color: #7fa4fc;
+  transform: translateX(4px);
+}
+
+
+/* ── Work popup height  ───────────────────────── */
+#popup-work {
+  height: 75vh;
+}
+
+#popup-work .popup-body {
+  height: calc(75vh - 44px); 
+  flex: 1;
+}
+
+#work-carousel {
+  height: 100%;
+}
+
+.work-page {
+  height: 100%;
+  overflow-y: auto;
+}
+
 /* ── Dark mode ───────────────────────────────────── */
 body.dark-mode {
   background: #050e1f;
@@ -422,4 +464,16 @@ body.dark-mode .link-item {
 
 body.dark-mode .link-item:hover {
   color: #7fa4fc;
+}
+
+body.dark-mode .work-project-title {
+  color: #7fa4fc;
+}
+
+body.dark-mode .work-project-title:hover {
+  color: #f3a633;
+}
+
+body.dark-mode .work-page-indicator {
+  color: #6a7fa0;
 }
