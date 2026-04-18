@@ -130,7 +130,7 @@ page-layout: full
       <!-- Page 4 -->
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">4 / 4</div>
-        <h3 class="work-project-title" data-project="project4">Personal Reflection</h3>
+        <h3 style="margin: 5px 0 12px; color:#666; font-weight:300;">Personal Reflection</h3>
         <p>It's been an incredible journey creating this website. The entire process has really pushed me to experiment outside of my comfort zone and I owe it all to the wonderful support and guidance of my lecturer.<p>
           <p> Each element from start to finish, while incredibly challenging, was also simultaneously rewarding. My self-confidence regarding coding languages, particularly HTML/CSS has grown tremendously throughout this process, and I'm grateful for the opportunity to showcase my work.<p>
             <p> This is perhaps one of the rare occasions that I've used coding for fun and creativity, rather than just for academic and work purposes. I'm especially proud of the pop-up windows and quirky sounds, and I hope that whoever comes across this site gets the same level of enjoyment I did when interacting with all the elements :D.</p>
