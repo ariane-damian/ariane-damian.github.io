@@ -107,6 +107,7 @@ page-layout: full
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">1 / 4</div>
         <h3 class="work-project-title" data-project="project1">Fraud Analysis</h3>
+        <img src="images/Fraud_icon.jpg" alt="Fraud Analysis" style="width:100%; border-radius:8px; margin:0 0 16px; object-fit:contain; max-height:260px;">
         <p>Description. Click the title to learn more!</p>
       </div>
 
@@ -114,6 +115,7 @@ page-layout: full
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">2 / 4</div>
         <h3 class="work-project-title" data-project="project2">Yelp Star Ratings</h3>
+        <img src="images/Yelp_icon.jpg" alt="Yelp Star Ratings" style="width:100%; border-radius:8px; margin:0 0 16px; object-fit:contain; max-height:260px;">
         <p>Description. Click the title to learn more!</p>
       </div>
 
@@ -121,6 +123,7 @@ page-layout: full
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">3 / 4</div>
         <h3 class="work-project-title" data-project="project3">E-commerce Sentiment Analysis</h3>
+        <img src="images/Sentiment_icon.jpg" alt="E-commerce Sentiment Analysis" style="width:100%; border-radius:8px; margin:0 0 16px; object-fit:contain; max-height:260px;">
         <p> Description Click the title to learn more!</p>
       </div>
 

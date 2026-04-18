@@ -7,6 +7,9 @@ project:
     - audio/UI_close.mp3
     - images/profile_pic.jpeg
     - cv/Ariane Joie Damian_CV_2026.pdf
+    - images/Fraud_icon.jpg
+    - images/Yelp_icon.jpg
+    - images/Sentiment_icon.jpg
 
 website:
   title: "Ariane Damian"
