@@ -7,8 +7,9 @@ format:
     number-sections: false
     code-fold: true
     self-contained: false
+    code-tools: true
 execute:
-  echo: false
+  echo: true
   warning: false
 ---
 
@@ -53,6 +54,49 @@ Two transformer-based NLP models were selected to reflect diferent approaches to
 - Target variable: *Recommended IND* (binary: 1 = Recommended, 0 = Not Recommended)
 - Sentiment distribution: **82% Recommended / 18% Not Recommended** (imbalanced)
 
+### Visualisation of Class Imbalance - Through Python
+```{python}
+#| code-fold: show
+import matplotlib.pyplot as plt
+import numpy as np
+
+# ── Counts taken directly from official dataset──────────────────────────
+counts = [4101, 18540]          # [Not Recommended (0), Recommended (1)]
+bar_labels   = ['Not Recommended (0)', 'Recommended (1)']
+bar_colors   = ['#E8735A', '#6DBF8A']
+
+# ── Plot ─────────────────────────────────────────────────────────────────────
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# Left – Count bar chart
+axes[0].bar(
+    bar_labels,
+    counts,
+    color=bar_colors,
+    edgecolor='black'
+)
+axes[0].set_title('Class Distribution', fontsize=13, fontweight='bold')
+axes[0].set_ylabel('Number of Reviews')
+axes[0].set_xlabel('Sentiment Label')
+for i, v in enumerate(counts):
+    axes[0].text(i, v + 100, f'{v:,}',
+                 ha='center', fontweight='bold')
+
+# Right – Percentage pie chart
+axes[1].pie(
+    counts,
+    labels=['Not Recommended (0)', 'Recommended (1)'],
+    colors=bar_colors,
+    autopct='%1.1f%%',
+    startangle=90,
+    explode=(0.05, 0.05)
+)
+axes[1].set_title('Class Distribution (%)', fontsize=13, fontweight='bold')
+
+plt.tight_layout()
+plt.show()
+```
+
 ### Data Preparation & Preprocessing
 
 - Null values in *Review Text* (845 total) were removed as this column functions as the model input
@@ -91,6 +135,73 @@ Training loss declined consistently across all 3 epochs, demonstrating genuine l
 
 - Training on 3 epochs yielded a loss reduction nearly **twice** that of 1 epoch
 - Some volatility remained at the 3rd epoch, suggesting scope for further refinement
+
+### Training Loss by Epoch - Python Recreated Plot
+```{python}
+#code-fold: show
+import matplotlib.pyplot as plt
+import numpy as np
+
+np.random.seed(42)
+
+# ── Helper: simulate batch loss with smooth rolling average ──────────────────
+def make_losses(n_batches, start, end, noise=0.18):
+    trend = np.linspace(start, end, n_batches)
+    noise_arr = np.random.normal(0, noise, n_batches)
+    batch_loss = np.clip(trend + noise_arr, 0.05, 1.2)
+    rolling = np.convolve(batch_loss, np.ones(10)/10, mode='valid')
+    return batch_loss, rolling
+
+# ── Fig 3.11a — 1 Epoch (100 batches) ───────────────────────────────────────
+batch_loss_1, rolling_1 = make_losses(100, start=0.6186, end=0.3705)
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(batch_loss_1, color='#7ec8e3', linewidth=0.9, label='Batch loss')
+ax.plot(range(9, 100), rolling_1, color='red', linewidth=2, label='10-batch rolling avg')
+ax.set_title('Training Loss per Batch — 1 Epoch')
+ax.set_xlabel('Batch number')
+ax.set_ylabel('Loss')
+ax.legend(fontsize=9)
+ax.text(0.01, 0.05,
+        f'Starting loss:  0.6186\nEnding loss:    0.3705\nLoss reduction: 0.2481',
+        transform=ax.transAxes, fontsize=8, verticalalignment='bottom',
+        fontfamily='monospace')
+plt.tight_layout()
+plt.savefig('fig_3_11a.png', dpi=150, bbox_inches='tight')
+plt.show()
+print("Note: Batch loss values are simulated to reflect reported statistics.")
+
+# ── Fig 3.11b — 3 Epochs (300 batches) ──────────────────────────────────────
+# Each epoch: loss resets slightly higher then trends down again
+b1, r1 = make_losses(100, start=0.5604, end=0.25)
+b2, r2 = make_losses(100, start=0.30,   end=0.12)
+b3, r3 = make_losses(100, start=0.15,   end=0.0174, noise=0.08)
+
+batch_loss_3 = np.concatenate([b1, b2, b3])
+rolling_3    = np.convolve(batch_loss_3, np.ones(10)/10, mode='valid')
+
+fig, ax = plt.subplots(figsize=(10, 4))
+ax.plot(batch_loss_3, color='#7ec8e3', linewidth=0.9, label='Batch loss')
+ax.plot(range(9, 300), rolling_3, color='red', linewidth=2, label='10-batch rolling avg')
+
+# Epoch boundary lines
+ax.axvline(x=100, color='red',   linestyle='--', linewidth=1.2, label='Epoch 1 end')
+ax.axvline(x=200, color='green', linestyle='--', linewidth=1.2, label='Epoch 2 end')
+
+ax.set_title('Training Loss per Batch — 3 Epochs')
+ax.set_xlabel('Batch number')
+ax.set_ylabel('Loss')
+ax.legend(fontsize=9)
+ax.text(0.01, 0.05,
+        f'Starting loss (batch 1):   0.5604\nEnding loss (batch 300): 0.0174\nLoss reduction:              0.5430',
+        transform=ax.transAxes, fontsize=8, verticalalignment='bottom',
+        fontfamily='monospace')
+plt.tight_layout()
+plt.savefig('fig_3_11b.png', dpi=150, bbox_inches='tight')
+plt.show()
+print("Note: Batch loss values are simulated to reflect reported statistics.")
+
+```
 
 ### BERT Evaluation Results
 

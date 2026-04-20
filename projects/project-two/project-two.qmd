@@ -26,7 +26,7 @@ execute:
 
 Reputation is a direct reflection of a business' performance, influencing consumer behaviour through perceived image, reliability, and quality. With the proliferation of technology, online review platforms have become essential for determining business reputation — and Yelp is one of the most established.
 
-This report analyses the official Yelp dataset to:
+This project analyses the official Yelp dataset to:
 
 - Understand the distribution of businesses, star ratings, and reviews across the platform
 - Identify key attributes and characteristics that influence star ratings

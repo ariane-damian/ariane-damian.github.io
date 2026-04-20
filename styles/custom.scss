@@ -662,6 +662,12 @@ body.dark-mode .work-page-indicator {
   text-decoration: underline;
 }
 
+.project-popup-body pre,
+.project-popup-body code,
+.project-popup-body .sourceCode {
+  text-align: left !important;
+}
+
 /* ── Dark mode for project popups ───────────────────────── */
 body.dark-mode .project-popup-body {
   background: #0d1b3e;

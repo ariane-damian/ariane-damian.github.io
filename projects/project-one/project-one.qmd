@@ -26,7 +26,7 @@ execute:
 
 Fraud has existed since ancient times, with detection and prevention methods evolving in parallel. The digital age has dramatically accelerated both the sophistication of fraud and the tools used to combat it.
 
-This report analyses a financial dataset to:
+This project analyses a financial dataset to:
 
 - Identify demographics most susceptible to committing financial crimes
 - Flag key parameters indicating suspicious or fraudulent behaviour
