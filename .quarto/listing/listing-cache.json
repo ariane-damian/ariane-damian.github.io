@@ -1,0 +1,9 @@
+{
+  "listingMap": {
+    "projects\\project.qmd": [
+      "project-one/project-one.qmd",
+      "project-two/project-two.qmd",
+      "project-three/project-three.qmd"
+    ]
+  }
+}
