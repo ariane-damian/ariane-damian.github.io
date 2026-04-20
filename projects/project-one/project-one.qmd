@@ -1,0 +1,96 @@
+---
+title: ""
+page-layout: custom
+format:
+  html:
+    toc: false
+    number-sections: false
+    code-fold: true
+    self-contained: false
+execute:
+  echo: false
+  warning: false
+---
+
+```{=html}
+<div class="project-doc">
+```
+
+## Fictitious Finances: Facts and Fallacies on Fraud {.project-main-title}
+
+<p class="project-meta">MSc Business Analytics · Fraud Analysis · Ariane Damian · Dec. 03, 2025 </p>
+
+---
+
+## Introduction
+
+Fraud has existed since ancient times, with detection and prevention methods evolving in parallel. The digital age has dramatically accelerated both the sophistication of fraud and the tools used to combat it.
+
+This report analyses a financial dataset to:
+
+- Identify demographics most susceptible to committing financial crimes
+- Flag key parameters indicating suspicious or fraudulent behaviour
+- Perform correlation and outlier analysis
+- Lay the groundwork for a future predictive fraud detection model
+
+---
+
+## Methodology
+
+### Data Preparation
+
+- No missing values were identified in the dataset
+- Numeric currency columns were formatted as *Currency*; other numeric columns retained as *Whole Number* or *Decimal*
+- Binary (0/1) columns were converted to **Yes/No** for Power BI visualisation
+- Variables such as **Age**, **Credit Score**, and **Account Age** were grouped into categories for more effective analysis
+
+### Key Statistical Analysis
+
+The following statistical methods were applied:
+
+| Method | Purpose |
+|--------|---------|
+| Mean, Median, Standard Deviation | Summarise central tendency and spread |
+| Correlation Analysis | Determine existence and strength of variable relationships |
+| Interquartile Range (IQR) | Identify outliers and understand data distribution |
+
+---
+
+## Summary of Findings
+
+### Basic Demographic Overview
+
+Fraud rate and median transaction amounts were examined across key demographic groups.
+
+| Demographic | Key Observation |
+|---|---|
+| **Age 70+** | Fraud cases exceed non-fraud cases — mirrors real-world research on older adults' vulnerability |
+| **Age 90+** | Highest median fraudulent transaction amount, but likely an outlier effect (<1% of total data) |
+| **Credit Score** | Lower (worst-performing) credit score groups show higher fraud frequency |
+| **Education — PhD** | Lowest fraud *rate* but highest fraud *value* — fraud is rare but high-value |
+| **Gender / Device Type** | Minimal differences observed across groups |
+
+### Other relevant findings include
+- Transaction thresholds (upper limit ~€6,000) and outlier patterns provide useful signals for fraud detection
+- Correlation analysis revealed mostly weak relationships, with the most actionable being income–fraud and loan amount–fraud connections
+- While IQR is effective for identifying unusual figures in some variables, it is not universally applicable. Fraud can and does occur within “normal” data ranges.
+
+---
+
+## Recommendations
+
+The following improvements are recommended for future analysis and model development:
+
+- Incorporate **regression coefficients** and **confidence intervals** for more rigorous statistical analysis
+- Perform **complete outlier removal** to improve model accuracy
+- Expand outlier analysis beyond IQR to include **Z-scores** and **multivariate methods**
+- Apply findings to **machine learning algorithms** to build a robust, predictive fraud detection model
+- Consider additional variables not fully explored in this report to reduce noise and improve signal detection
+
+::: {.callout-note}
+All analytical factors identified in this project — demographic patterns, correlation signals, and outlier thresholds — can serve as inputs for machine learning models capable of more sophisticated and automated fraud detection.
+:::
+
+```{=html}
+</div>
+```

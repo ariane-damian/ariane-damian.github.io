@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project One – Ariane Damian</title>
+<title>project-two – Ariane Damian</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3fe511a78121ffa482939e6deea49686.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5aa7aa49e6d0f58009e5d3bba5760a6c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,44 +76,189 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-layout-custom">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Project One</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Python</div>
-    <div class="quarto-category">Data</div>
-  </div>
-  </div>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="overview" class="level2">
-<h2 data-anchor-id="overview">Overview</h2>
-<p>Description.</p>
-
-
+<div class="project-doc">
+<section id="an-examination-into-star-ratings-based-on-the-official-yelp-dataset" class="level2 project-main-title">
+<h2 class="project-main-title" data-anchor-id="an-examination-into-star-ratings-based-on-the-official-yelp-dataset">An Examination into Star Ratings Based on the Official Yelp Dataset</h2>
+<p class="project-meta">
+MSc Business Analytics · Business Analytics Project · Ariane Damian · Dec.&nbsp;02, 2025
+</p>
+<hr>
 </section>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
+<p>Reputation is a direct reflection of a business’ performance, influencing consumer behaviour through perceived image, reliability, and quality. With the proliferation of technology, online review platforms have become essential for determining business reputation — and Yelp is one of the most established.</p>
+<p>This report analyses the official Yelp dataset to:</p>
+<ul>
+<li>Understand the distribution of businesses, star ratings, and reviews across the platform</li>
+<li>Identify key attributes and characteristics that influence star ratings</li>
+<li>Apply and evaluate regression models to predict star ratings</li>
+<li>Propose a new analytics-based business model for Yelp centred on Star Rating Prediction</li>
+</ul>
+<hr>
+</section>
+<section id="methodology" class="level2">
+<h2 data-anchor-id="methodology">Methodology</h2>
+<section id="data-preparation" class="level3">
+<h3 data-anchor-id="data-preparation">Data Preparation</h3>
+<ul>
+<li>Raw dataset consisted of approximately <strong>150,000 rows</strong> and <strong>14 columns</strong></li>
+<li>Missing and null values were removed</li>
+<li>Columns <em>hours</em>, <em>address</em>, and <em>postal_code</em> were excluded as irrelevant to the target variable</li>
+<li><em>Categories</em> and <em>Attributes</em> were split by frequency into <strong>12 key categories</strong> and <strong>33 key attributes</strong></li>
+<li>Final cleaned dataset: <strong>150,243 rows</strong> and <strong>56 columns</strong></li>
+</ul>
+</section>
+<section id="modelling-techniques" class="level3">
+<h3 data-anchor-id="modelling-techniques">Modelling Techniques</h3>
+<p>Three regression models were applied to predict Star Rating:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linear Regression (LR)</td>
+<td>Baseline model; explores possible linear relationships between variables and star rating</td>
+</tr>
+<tr class="even">
+<td>Random Forest Regression (RFR)</td>
+<td>Handles non-linear relationships; robust to outliers and missing data</td>
+</tr>
+<tr class="odd">
+<td>Gradient Boosting Regression (GBR)</td>
+<td>Advanced model; iteratively corrects errors to maximise predictive accuracy</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="summary-of-findings" class="level2">
+<h2 data-anchor-id="summary-of-findings">Summary of Findings</h2>
+<section id="exploratory-data-analysis" class="level3">
+<h3 data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p>Patterns in business distribution, star ratings, and attributes were examined across the dataset.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Finding</th>
+<th>Key Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Business Categories</strong></td>
+<td><em>Food &amp; Restaurants</em> dominates with ~65,000 businesses — a heavily saturated market</td>
+</tr>
+<tr class="even">
+<td><strong>Star Ratings</strong></td>
+<td>Most businesses rated between 3–4.5 stars; 4 stars is the most common</td>
+</tr>
+<tr class="odd">
+<td><strong>Category vs.&nbsp;Rating</strong></td>
+<td>Most categories cluster near the 3.6 average — the individual business, not its category, drives rating</td>
+</tr>
+<tr class="even">
+<td><strong>Review Count</strong></td>
+<td>Most businesses receive very few reviews; review count does not significantly correlate with star rating</td>
+</tr>
+<tr class="odd">
+<td><strong>Business Attributes</strong></td>
+<td>Most attributes (e.g.&nbsp;outdoor seating, delivery, bike parking), when present, are associated with higher ratings</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="other-relevant-findings-include" class="level3">
+<h3 data-anchor-id="other-relevant-findings-include">Other relevant findings include</h3>
+<ul>
+<li>The market for <em>Pets</em> and <em>Hotels/Travel</em> categories is less saturated, offering greater opportunity for smaller businesses to build customer relationships</li>
+<li>Low review counts may indicate low visibility or neutral satisfaction — both addressable through Yelp’s advertising and analytics services</li>
+<li>Growing the review sample size by increasing customer engagement would also improve the accuracy of the Star Rating Prediction model over time</li>
+</ul>
+<hr>
+</section>
+<section id="regression-analysis" class="level3">
+<h3 data-anchor-id="regression-analysis">Regression Analysis</h3>
+<p>All three models were evaluated using R², Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Performance Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Linear Regression</strong></td>
+<td>Weakest performer; lowest R², highest MAE &amp; RMSE; ~1 star average deviation</td>
+</tr>
+<tr class="even">
+<td><strong>Random Forest</strong></td>
+<td>Slightly better overall; still approximately 1 star deviation across both datasets</td>
+</tr>
+<tr class="odd">
+<td><strong>Gradient Boosting</strong></td>
+<td>Marginal improvements in some metrics; not decisively better than RFR</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Random Forest Regression</strong> was identified as the most robust model, though differences between models were marginal</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All models are limited to business-level data; incorporating <strong>review text sentiment</strong> and <strong>pricing information</strong> would likely improve predictions substantially.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="recommendations" class="level2">
+<h2 data-anchor-id="recommendations">Recommendations</h2>
+<p>The following improvements and opportunities are recommended for Yelp and future model development:</p>
+<ul>
+<li>Develop a <strong>premium Star Rating Prediction service</strong> that businesses can subscribe to for performance forecasting and improvement guidance</li>
+<li>Use Star Rating predictions <strong>internally</strong> to refine Yelp’s ranking algorithms and “Best of Yelp” promotional lists</li>
+<li>Incorporate <strong>review text sentiment analysis</strong> and <strong>price-level data</strong> to significantly improve model accuracy</li>
+<li>Expand modelling to address <strong>class imbalance</strong> in ratings (few low-rated businesses) and <strong>category imbalance</strong> (dominance of food businesses)</li>
+<li>Offer <strong>targeted advertising services</strong> to businesses with low review counts to increase visibility and grow the dataset</li>
+</ul>
+</section></div>
 
-</main> <!-- /main -->
+
+
+
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {

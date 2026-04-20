@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Ariane Damian</title>
+<title>project-three – Ariane Damian</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,21 +26,21 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5aa7aa49e6d0f58009e5d3bba5760a6c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5aa7aa49e6d0f58009e5d3bba5760a6c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,37 +76,350 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-layout-custom">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
 <!-- main -->
-<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About</h1>
+
+
+
+<div class="project-doc">
+<section id="bert-vs-gen-ai-sentiment-analysis-of-womens-e-commerce-clothing-reviews" class="level2 project-main-title">
+<h2 class="project-main-title" data-anchor-id="bert-vs-gen-ai-sentiment-analysis-of-womens-e-commerce-clothing-reviews">BERT vs Gen AI: Sentiment Analysis of Women’s E-commerce Clothing Reviews</h2>
+<p class="project-meta">
+MSc Business Analytics · NLP &amp; Sentiment Analysis · Ariane Damian · Apr.&nbsp;17, 2026
+</p>
+<hr>
+</section>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
+<p>Consumer reviews have long served as a cornerstone of business reputation and trust. In the digital age, the volume and velocity of online feedback has made manual analysis increasingly unsustainable, giving rise to the need for automated sentiment analysis.</p>
+<p>This report compares two NLP models for binary sentiment classification of women’s e-commerce clothing reviews:</p>
+<ul>
+<li>Evaluate <strong>BERT</strong> (encoder-based, discriminative) as a fine-tuned classification model</li>
+<li>Evaluate <strong>LLaMA3</strong> (decoder-based, generative) using zero-shot prompting</li>
+<li>Assess both models across key performance metrics: accuracy, F1-score, precision, and recall</li>
+<li>Discuss business relevance, ethical considerations, and limitations for e-commerce deployment</li>
+</ul>
+<hr>
+</section>
+<section id="methodology" class="level2">
+<h2 data-anchor-id="methodology">Methodology</h2>
+<section id="model-selection" class="level3">
+<h3 data-anchor-id="model-selection">Model Selection</h3>
+<p>Two transformer-based NLP models were selected to reflect diferent approaches to Natural Language Understanding tasks:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Type</th>
+<th>Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>BERT</strong></td>
+<td>Encoder-based (discriminative)</td>
+<td>Fine-tuned on labelled dataset via supervised learning</td>
+</tr>
+<tr class="even">
+<td><strong>LLaMA3</strong></td>
+<td>Decoder-based (generative)</td>
+<td>Zero-shot prompting — no training or labelled examples required</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dataset" class="level3">
+<h3 data-anchor-id="dataset">Dataset</h3>
+<ul>
+<li>Source: Kaggle — real-world women’s e-commerce clothing reviews</li>
+<li>~23,500 records and 10 attributes prior to cleaning</li>
+<li>Target variable: <em>Recommended IND</em> (binary: 1 = Recommended, 0 = Not Recommended)</li>
+<li>Sentiment distribution: <strong>82% Recommended / 18% Not Recommended</strong> (imbalanced)</li>
+</ul>
+</section>
+<section id="data-preparation-preprocessing" class="level3">
+<h3 data-anchor-id="data-preparation-preprocessing">Data Preparation &amp; Preprocessing</h3>
+<ul>
+<li>Null values in <em>Review Text</em> (845 total) were removed as this column functions as the model input</li>
+<li>A stratified sample of <strong>2,000 records</strong> was extracted to preserve class distribution</li>
+<li>Train/test split: <strong>1,600 training / 400 test reviews</strong> (80/20, random seed 42)</li>
+<li><strong>Class weights</strong> were applied to penalise misclassifications in the minority class (<em>Not Recommended</em>)</li>
+<li>BERT tokenisation used WordPiece Tokenizer (30,522 tokens); truncation threshold set at <strong>128 tokens</strong> based on median review length analysis</li>
+</ul>
+</section>
+<section id="model-training-prompting" class="level3">
+<h3 data-anchor-id="model-training-prompting">Model Training &amp; Prompting</h3>
+<ul>
+<li><strong>BERT</strong> was fine-tuned using an <strong>AdamW optimiser</strong> (corrects weight decay issues present in standard Adam) at a learning rate of 2e-5 and batch size of 16, trained over <strong>3 epochs</strong></li>
+<li><strong>LLaMA3</strong> was evaluated locally via zero-shot prompting using a structured prompt with three elements:</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Prompt Element</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Context</strong></td>
+<td>You are classifying women’s clothing reviews</td>
+</tr>
+<tr class="even">
+<td><strong>Instruction</strong></td>
+<td>Classify the review as either RECOMMENDED or NOT RECOMMENDED</td>
+</tr>
+<tr class="odd">
+<td><strong>Constraint</strong></td>
+<td>Only reply with one of those two labels, nothing else</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="performance-metrics" class="level3">
+<h3 data-anchor-id="performance-metrics">Performance Metrics</h3>
+<p>Accuracy, F1-score, precision, and recall were all assessed. Due to the class imbalance, accuracy alone is insufficient — it risks biasing the model toward the majority class, violating the EU’s Trustworthy AI requirement of <em>Fairness</em>. F1-score was prioritised as the balance between precision and recall.</p>
+<hr>
+</section>
+</section>
+<section id="summary-of-findings" class="level2">
+<h2 data-anchor-id="summary-of-findings">Summary of Findings</h2>
+<section id="bert-fine-tuning" class="level3">
+<h3 data-anchor-id="bert-fine-tuning">BERT Fine-Tuning</h3>
+<p>Training loss declined consistently across all 3 epochs, demonstrating genuine learning rather than memorisation. Key loss comparisons:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Starting Loss</th>
+<th>Ending Loss</th>
+<th>Loss Reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1 Epoch</strong></td>
+<td>0.6186</td>
+<td>0.3705</td>
+<td>0.2461</td>
+</tr>
+<tr class="even">
+<td><strong>3 Epochs</strong></td>
+<td>0.5604</td>
+<td>0.0174</td>
+<td>0.5430</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Training on 3 epochs yielded a loss reduction nearly <strong>twice</strong> that of 1 epoch</li>
+<li>Some volatility remained at the 3rd epoch, suggesting scope for further refinement</li>
+</ul>
+</section>
+<section id="bert-evaluation-results" class="level3">
+<h3 data-anchor-id="bert-evaluation-results">BERT Evaluation Results</h3>
+<p>BERT performed strongly for the majority class (<em>Recommended</em>) and respectably for the minority class (<em>Not Recommended</em>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Recommended (1)</th>
+<th>Not Recommended (0)</th>
+<th>Macro Avg</th>
+<th>Weighted Avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>F1-Score</strong></td>
+<td>0.95</td>
+<td>0.76</td>
+<td>0.85</td>
+<td>0.92</td>
+</tr>
+<tr class="even">
+<td><strong>Precision</strong></td>
+<td>0.94</td>
+<td>0.80</td>
+<td>0.87</td>
+<td>0.92</td>
+</tr>
+<tr class="odd">
+<td><strong>Recall</strong></td>
+<td>0.96</td>
+<td>0.72</td>
+<td>0.84</td>
+<td>0.92</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Precision outperforms recall for the minority class (0.80 vs 0.72) — the model accurately flags negatives but misses 28% of actual negatives</li>
+<li>Overall accuracy: <strong>91.75%</strong></li>
+</ul>
+</section>
+<section id="llama3-zero-shot-evaluation-results" class="level3">
+<h3 data-anchor-id="llama3-zero-shot-evaluation-results">LLaMA3 Zero-Shot Evaluation Results</h3>
+<p>LLaMA3 demonstrated high recall for <em>Not Recommended</em> (0.97) but very low precision (0.57) — indicating it over-identifies negative reviews, classifying 43% as false positives:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Recommended (1)</th>
+<th>Not Recommended (0)</th>
+<th>Macro Avg</th>
+<th>Weighted Avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>F1-Score</strong></td>
+<td>0.91</td>
+<td>0.72</td>
+<td>0.81</td>
+<td>0.87</td>
+</tr>
+<tr class="even">
+<td><strong>Precision</strong></td>
+<td>0.99</td>
+<td>0.57</td>
+<td>0.78</td>
+<td>0.92</td>
+</tr>
+<tr class="odd">
+<td><strong>Recall</strong></td>
+<td>0.83</td>
+<td>0.97</td>
+<td>0.90</td>
+<td>0.86</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Overall accuracy: <strong>86.00%</strong></li>
+<li>High recall bias toward <em>Not Recommended</em> likely a consequence of the absence of fine-tuning</li>
+</ul>
+</section>
+<section id="head-to-head-comparison" class="level3">
+<h3 data-anchor-id="head-to-head-comparison">Head-to-Head Comparison</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>BERT</th>
+<th>LLaMA3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Overall Accuracy</strong></td>
+<td>91.75%</td>
+<td>86.00%</td>
+</tr>
+<tr class="even">
+<td><strong>Macro F1</strong></td>
+<td>0.85</td>
+<td>0.81</td>
+</tr>
+<tr class="odd">
+<td><strong>Precision — Not Recommended</strong></td>
+<td>0.80</td>
+<td>0.57</td>
+</tr>
+<tr class="even">
+<td><strong>Recall — Not Recommended</strong></td>
+<td>0.72</td>
+<td>0.97</td>
+</tr>
+<tr class="odd">
+<td><strong>Training Required</strong></td>
+<td>Yes (30 min)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>BERT outperforms LLaMA3 across accuracy, Macro F1, and precision for negative sentiment</li>
+<li>LLaMA3 achieves competitive results <strong>without any training or labelled data</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 data-anchor-id="discussion">Discussion</h2>
+<section id="business-relevance" class="level3">
+<h3 data-anchor-id="business-relevance">Business Relevance</h3>
+<ul>
+<li>For e-commerce organisations, <strong>LLaMA3</strong> is the more accessible option — requiring no data labelling, training infrastructure, or deep technical knowledge</li>
+<li>However, <strong>BERT</strong> is substantially more reliable at detecting genuine negative reviews, which carries real operational risk if misclassified (e.g.&nbsp;misdirected resources, unnecessary escalations)</li>
+<li>A practical compromise is <strong>DistilBERT</strong> — a derivative of BERT operating at 97% of its capacity, 60% faster and 40% smaller — prioritising rapid deployment over exhaustive complexity</li>
+</ul>
+</section>
+<section id="ethics-responsible-ai" class="level3">
+<h3 data-anchor-id="ethics-responsible-ai">Ethics &amp; Responsible AI</h3>
+<ul>
+<li>The dataset is anonymised and from an authentic source — consistent with EU Trustworthy AI requirements under <em>Privacy and Data Governance</em></li>
+<li>Class imbalance introduces bias risk, particularly violating the <em>Fairness</em> principle if the minority class is under-represented in training</li>
+<li>LLaMA3’s zero-shot bias toward negative classification raises additional concerns around reliability in production environments</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="recommendations" class="level2">
+<h2 data-anchor-id="recommendations">Recommendations</h2>
+<p>The following directions are recommended for future work and deployment considerations:</p>
+<ul>
+<li>Evaluate <strong>DistilBERT</strong> as a production-ready alternative to BERT — nearly equivalent performance at significantly lower resource cost</li>
+<li>Explore <strong>few-shot prompting</strong> with LLaMA3 to assess whether providing examples improves precision for the minority class</li>
+<li>Conduct <strong>hyperparameter tuning</strong> on BERT (learning rate, batch size, sample size) to address remaining volatility at epoch 3</li>
+<li>Establish a <strong>control group</strong> (no class weights) to formally measure the impact of class weighting on model performance</li>
+<li>Extend to <strong>multi-class sentiment classification</strong> to explore whether the metric uniformity observed in weighted averages persists across more than two labels</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>BERT demonstrated stronger and more balanced performance for the binary classification objective, with higher accuracy and more reliable detection of negative sentiment. LLaMA3’s zero-shot results, while slightly weaker, highlight the growing potential of generative models for classification tasks — particularly in resource-constrained or low-expertise environments.</p>
+</div>
+</div>
+</section></div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<p>About this site</p>
-
-
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {

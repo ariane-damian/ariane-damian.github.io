@@ -13,5 +13,17 @@
   },
   "projects/project-two/index.qmd": {
     "index.html": "a3be5fdf"
+  },
+  "projects/project-one/project-one.qmd": {
+    "project-one.html": "f7e3c5e0"
+  },
+  "projects/project-three/project-three.qmd": {
+    "project-three.html": "9838ebc8"
+  },
+  "projects/project-two/project-two.qmd": {
+    "project-two.html": "33fcf00a"
+  },
+  "projects/project.qmd": {
+    "project.html": "2bcddd42"
   }
 }

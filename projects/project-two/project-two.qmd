@@ -1,0 +1,109 @@
+---
+title: ""
+page-layout: custom
+format:
+  html:
+    toc: false
+    number-sections: false
+    code-fold: true
+    self-contained: false
+execute:
+  echo: false
+  warning: false
+---
+
+```{=html}
+<div class="project-doc">
+```
+
+## An Examination into Star Ratings Based on the Official Yelp Dataset {.project-main-title}
+
+<p class="project-meta">MSc Business Analytics · Business Analytics Project · Ariane Damian · Dec. 02, 2025</p>
+
+---
+
+## Introduction
+
+Reputation is a direct reflection of a business' performance, influencing consumer behaviour through perceived image, reliability, and quality. With the proliferation of technology, online review platforms have become essential for determining business reputation — and Yelp is one of the most established.
+
+This report analyses the official Yelp dataset to:
+
+- Understand the distribution of businesses, star ratings, and reviews across the platform
+- Identify key attributes and characteristics that influence star ratings
+- Apply and evaluate regression models to predict star ratings
+- Propose a new analytics-based business model for Yelp centred on Star Rating Prediction
+
+---
+
+## Methodology
+
+### Data Preparation
+
+- Raw dataset consisted of approximately **150,000 rows** and **14 columns**
+- Missing and null values were removed
+- Columns *hours*, *address*, and *postal_code* were excluded as irrelevant to the target variable
+- *Categories* and *Attributes* were split by frequency into **12 key categories** and **33 key attributes**
+- Final cleaned dataset: **150,243 rows** and **56 columns**
+
+### Modelling Techniques
+
+Three regression models were applied to predict Star Rating:
+
+| Model | Purpose |
+|--------|---------|
+| Linear Regression (LR) | Baseline model; explores possible linear relationships between variables and star rating |
+| Random Forest Regression (RFR) | Handles non-linear relationships; robust to outliers and missing data |
+| Gradient Boosting Regression (GBR) | Advanced model; iteratively corrects errors to maximise predictive accuracy |
+
+## Summary of Findings
+
+### Exploratory Data Analysis
+
+Patterns in business distribution, star ratings, and attributes were examined across the dataset.
+
+| Finding | Key Observation |
+|---|---|
+| **Business Categories** | *Food & Restaurants* dominates with ~65,000 businesses — a heavily saturated market |
+| **Star Ratings** | Most businesses rated between 3–4.5 stars; 4 stars is the most common |
+| **Category vs. Rating** | Most categories cluster near the 3.6 average — the individual business, not its category, drives rating |
+| **Review Count** | Most businesses receive very few reviews; review count does not significantly correlate with star rating |
+| **Business Attributes** | Most attributes (e.g. outdoor seating, delivery, bike parking), when present, are associated with higher ratings |
+
+### Other relevant findings include
+- The market for *Pets* and *Hotels/Travel* categories is less saturated, offering greater opportunity for smaller businesses to build customer relationships
+- Low review counts may indicate low visibility or neutral satisfaction — both addressable through Yelp's advertising and analytics services
+- Growing the review sample size by increasing customer engagement would also improve the accuracy of the Star Rating Prediction model over time
+
+---
+
+### Regression Analysis
+
+All three models were evaluated using R², Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE).
+
+| Model | Performance Summary |
+|---|---|
+| **Linear Regression** | Weakest performer; lowest R², highest MAE & RMSE; ~1 star average deviation |
+| **Random Forest** | Slightly better overall; still approximately 1 star deviation across both datasets |
+| **Gradient Boosting** | Marginal improvements in some metrics; not decisively better than RFR |
+
+- **Random Forest Regression** was identified as the most robust model, though differences between models were marginal
+
+::: {.callout-important}
+All models are limited to business-level data; incorporating **review text sentiment** and **pricing information** would likely improve predictions substantially.
+:::
+
+
+
+## Recommendations
+
+The following improvements and opportunities are recommended for Yelp and future model development:
+
+- Develop a **premium Star Rating Prediction service** that businesses can subscribe to for performance forecasting and improvement guidance
+- Use Star Rating predictions **internally** to refine Yelp's ranking algorithms and "Best of Yelp" promotional lists
+- Incorporate **review text sentiment analysis** and **price-level data** to significantly improve model accuracy
+- Expand modelling to address **class imbalance** in ratings (few low-rated businesses) and **category imbalance** (dominance of food businesses)
+- Offer **targeted advertising services** to businesses with low review counts to increase visibility and grow the dataset
+
+```{=html}
+</div>
+```

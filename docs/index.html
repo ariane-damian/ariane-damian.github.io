@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3fe511a78121ffa482939e6deea49686.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5aa7aa49e6d0f58009e5d3bba5760a6c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -179,25 +179,25 @@ ul.task-list li input[type="checkbox"] {
       <!-- Page 1 -->
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">1 / 4</div>
-        <h3 class="work-project-title" data-project="project1">Fraud Analysis</h3>
+        <h3 class="work-project-title" onclick="openProjectPopup('project-one', 'Fraud Analysis')">Fraud Analysis</h3>
         <img src="images/Fraud_icon.jpg" alt="Fraud Analysis" style="width:100%; border-radius:8px; margin:0 0 16px; object-fit:contain; max-height:260px;">
-        <p>Description. Click the title to learn more!</p>
+        <p>Analyses the prevalance of fraud in financial datasets, utlising only Power BI for data-mining. Click the title to learn more!</p>
       </div>
 
       <!-- Page 2 -->
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">2 / 4</div>
-        <h3 class="work-project-title" data-project="project2">Yelp Star Ratings</h3>
+        <h3 class="work-project-title" onclick="openProjectPopup('project-two', 'Yelp Star Ratings')">Yelp Star Ratings</h3>
         <img src="images/Yelp_icon.jpg" alt="Yelp Star Ratings" style="width:100%; border-radius:8px; margin:0 0 16px; object-fit:contain; max-height:260px;">
-        <p>Description. Click the title to learn more!</p>
+        <p> Applies a CBL approach to predict Yelp star ratings using different regression models executed in Python. Click the title to learn more!</p>
       </div>
 
       <!-- Page 3 -->
       <div class="work-page" style="width:25%; flex-shrink:0; padding:28px 32px; box-sizing:border-box; overflow-y:auto;">
         <div class="work-page-indicator">3 / 4</div>
-        <h3 class="work-project-title" data-project="project3">E-commerce Sentiment Analysis</h3>
+        <h3 class="work-project-title" onclick="openProjectPopup('project-three', 'E-commerce Sentiment Analysis')">E-commerce Sentiment Analysis</h3>
         <img src="images/Sentiment_icon.jpg" alt="E-commerce Sentiment Analysis" style="width:100%; border-radius:8px; margin:0 0 16px; object-fit:contain; max-height:260px;">
-        <p> Description Click the title to learn more!</p>
+        <p> Compares the performance of transformer-based NLP models for sentiment analysis in e-commerce reviews. Click the title to learn more!</p>
       </div>
 
       <!-- Page 4 -->
@@ -207,6 +207,7 @@ ul.task-list li input[type="checkbox"] {
         <p>It's been an incredible journey creating this website. The entire process has really pushed me to experiment outside of my comfort zone and I owe it all to the wonderful support and guidance of my lecturer.</p><p>
           </p><p> Each element from start to finish, while incredibly challenging, was also simultaneously rewarding. My self-confidence regarding coding languages, particularly HTML/CSS has grown tremendously throughout this process, and I'm grateful for the opportunity to showcase my work.</p><p>
             </p><p> This is perhaps one of the rare occasions that I've used coding for fun and creativity, rather than just for academic and work purposes. I'm especially proud of the pop-up windows and quirky sounds, and I hope that whoever comes across this site gets the same level of enjoyment I did when interacting with all the elements :D.</p>
+            <p></p> PS: Try popping the bubbles in the background! <p></p>
       </div>
     </div>
 
@@ -239,6 +240,20 @@ ul.task-list li input[type="checkbox"] {
     <h3>Get in touch!</h3>
     <p>The best way to reach me is by email:</p>
     <p><a href="mailto:ariane.damian2@gmail.com">ariane.damian2@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- Project popup -->
+<div class="popup-window popup-project" id="popup-project">
+  <div class="popup-header">
+    <span id="popup-project-title">project</span>
+    <button class="popup-close" onclick="closeProjectPopup()">✕</button>
+  </div>
+  <div class="popup-body project-popup-body" id="popup-project-body">
+    <div class="project-loading">
+      <div class="project-spinner"></div>
+      <span>Loading...</span>
+    </div>
   </div>
 </div>
 
@@ -299,7 +314,11 @@ document.addEventListener('keydown', function(e) {
       .sort((a, b) => parseInt(b.style.zIndex || 200) - parseInt(a.style.zIndex || 200));
     if (active.length) {
       const id = active[0].id.replace('popup-', '');
-      closePopup(id);
+      if (id === 'project') {
+        closeProjectPopup();
+      } else {
+        closePopup(id);
+      }
     }
   }
 });
@@ -434,11 +453,85 @@ function workCarousel(dir) {
     if (Math.abs(diff) > 40) workCarousel(diff > 0 ? 1 : -1);
   }, { passive: true });
 })();
+
+// Project popup fetch system
+const projectPaths = {
+  'project-one':   'projects/project-one/project-one.html',
+  'project-two':   'projects/project-two/project-two.html',
+  'project-three': 'projects/project-three/project-three.html'
+};
+
+const projectCache = {};
+
+function openProjectPopup(projectKey, projectTitle) {
+  const popup   = document.getElementById('popup-project');
+  const titleEl = document.getElementById('popup-project-title');
+  const bodyEl  = document.getElementById('popup-project-body');
+
+  titleEl.textContent = projectTitle;
+  bodyEl.scrollTop = 0;
+
+  playOpen();
+  popup.classList.remove('closing');
+  popup.classList.add('active');
+  bringToFront(popup);
+
+  if (projectCache[projectKey]) {
+    bodyEl.innerHTML = projectCache[projectKey];
+    return;
+  }
+
+  bodyEl.innerHTML = `
+    <div class="project-loading">
+      <div class="project-spinner"></div>
+      <span>Loading...</span>
+    </div>`;
+
+  fetch(projectPaths[projectKey])
+    .then(function(res) {
+      if (!res.ok) throw new Error('Could not load ' + projectPaths[projectKey]);
+      return res.text();
+    })
+    .then(function(html) {
+      const parser  = new DOMParser();
+      const doc     = parser.parseFromString(html, 'text/html');
+      const content =
+        doc.querySelector('.project-doc') ||
+        doc.querySelector('#quarto-document-content') ||
+        doc.querySelector('main.content') ||
+        doc.querySelector('body');
+
+      const extracted = content ? content.innerHTML : html;
+      projectCache[projectKey] = extracted;
+      bodyEl.innerHTML = extracted;
+    })
+    .catch(function(err) {
+      bodyEl.innerHTML = `
+        <div style="text-align:center; padding:40px; color:#999;">
+          <i class="bi bi-exclamation-circle" style="font-size:2rem; margin-bottom:12px; display:block;"></i>
+          <p>Could not load project content.</p>
+          <p style="font-size:0.85rem;">Make sure the project has been rendered by Quarto.</p>
+          <p style="font-size:0.8rem; opacity:0.6;">${err.message}</p>
+        </div>`;
+    });
+}
+
+function closeProjectPopup() {
+  const popup = document.getElementById('popup-project');
+  if (!popup.classList.contains('active')) return;
+  playClose();
+  popup.classList.remove('active');
+  popup.classList.add('closing');
+  popup.addEventListener('animationend', function handler() {
+    popup.classList.remove('closing');
+    popup.removeEventListener('animationend', handler);
+  });
+}
 </script>
 </section>
 </section>
 <div style="background:#7fa4fc; color:#eeeeee; padding:10px 20px; font-family:'Courier New', Courier, monospace; font-size:0.9rem; display:flex; justify-content:center; align-items:center; gap:20px;">
-<p><span>© 2025 Ariane Damian</span> <span>·</span> <span>Built with <a href="https://quarto.org" target="_blank" style="color:#eeeeee;">Quarto</a></span></p>
+<p><span>© 2026 Ariane Damian</span> <span>·</span> <span>Built with <a href="https://quarto.org" target="_blank" style="color:#eeeeee;">Quarto</a></span></p>
 </div>
 </div>
 <div class="bubbles-container" id="bubbles-container"></div>
@@ -465,7 +558,6 @@ function workCarousel(dir) {
       if (b.dataset.popping) return;
       b.dataset.popping = 'true';
 
-      // Freeze bubble at current screen position
       const rect = b.getBoundingClientRect();
       b.style.animation = 'none';
       b.style.position = 'fixed';
@@ -474,7 +566,6 @@ function workCarousel(dir) {
       b.style.opacity = '1';
       b.style.transform = 'none';
 
-      // Trigger pop
       b.style.transition = 'transform 0.15s ease-out, opacity 0.15s ease-out';
       requestAnimationFrame(function() {
         requestAnimationFrame(function() {
@@ -483,11 +574,9 @@ function workCarousel(dir) {
         });
       });
 
-      // Play sound
       const sfx = document.getElementById('sfx-close');
       if (sfx) { sfx.currentTime = 0; sfx.play(); }
 
-      // Remove and respawn a new bubble to keep count at 40
       setTimeout(function() {
         b.remove();
         makeBubble();
@@ -498,7 +587,6 @@ function workCarousel(dir) {
     return b;
   }
 
-  // Spawn initial 40 bubbles
   for (let i = 0; i < 40; i++) {
     makeBubble();
   }

@@ -1,24 +1,59 @@
 [
   {
-    "objectID": "projects/project-two/index.html",
-    "href": "projects/project-two/index.html",
-    "title": "Project Two",
-    "section": "",
-    "text": "Description."
-  },
-  {
-    "objectID": "projects/project-two/index.html#overview",
-    "href": "projects/project-two/index.html#overview",
-    "title": "Project Two",
-    "section": "",
-    "text": "Description."
-  },
-  {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
+    "objectID": "projects/project.html",
+    "href": "projects/project.html",
     "title": "Projects",
     "section": "",
-    "text": "Project One\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProject Two\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "An Examination into Star Ratings Based on the Official Yelp Dataset\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBERT vs Gen AI: Sentiment Analysis of Women’s E-commerce Clothing Reviews\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFictitious Finances: Facts and Fallacies on Fraud\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/project-three/project-three.html#bert-vs-gen-ai-sentiment-analysis-of-womens-e-commerce-clothing-reviews",
+    "href": "projects/project-three/project-three.html#bert-vs-gen-ai-sentiment-analysis-of-womens-e-commerce-clothing-reviews",
+    "title": "Ariane Damian",
+    "section": "BERT vs Gen AI: Sentiment Analysis of Women’s E-commerce Clothing Reviews",
+    "text": "BERT vs Gen AI: Sentiment Analysis of Women’s E-commerce Clothing Reviews\n\nMSc Business Analytics · NLP & Sentiment Analysis · Ariane Damian · Apr. 17, 2026"
+  },
+  {
+    "objectID": "projects/project-three/project-three.html#introduction",
+    "href": "projects/project-three/project-three.html#introduction",
+    "title": "Ariane Damian",
+    "section": "Introduction",
+    "text": "Introduction\nConsumer reviews have long served as a cornerstone of business reputation and trust. In the digital age, the volume and velocity of online feedback has made manual analysis increasingly unsustainable, giving rise to the need for automated sentiment analysis.\nThis report compares two NLP models for binary sentiment classification of women’s e-commerce clothing reviews:\n\nEvaluate BERT (encoder-based, discriminative) as a fine-tuned classification model\nEvaluate LLaMA3 (decoder-based, generative) using zero-shot prompting\nAssess both models across key performance metrics: accuracy, F1-score, precision, and recall\nDiscuss business relevance, ethical considerations, and limitations for e-commerce deployment"
+  },
+  {
+    "objectID": "projects/project-three/project-three.html#methodology",
+    "href": "projects/project-three/project-three.html#methodology",
+    "title": "Ariane Damian",
+    "section": "Methodology",
+    "text": "Methodology\n\nModel Selection\nTwo transformer-based NLP models were selected to reflect diferent approaches to Natural Language Understanding tasks:\n\n\n\n\n\n\n\n\nModel\nType\nApproach\n\n\n\n\nBERT\nEncoder-based (discriminative)\nFine-tuned on labelled dataset via supervised learning\n\n\nLLaMA3\nDecoder-based (generative)\nZero-shot prompting — no training or labelled examples required\n\n\n\n\n\nDataset\n\nSource: Kaggle — real-world women’s e-commerce clothing reviews\n~23,500 records and 10 attributes prior to cleaning\nTarget variable: Recommended IND (binary: 1 = Recommended, 0 = Not Recommended)\nSentiment distribution: 82% Recommended / 18% Not Recommended (imbalanced)\n\n\n\nData Preparation & Preprocessing\n\nNull values in Review Text (845 total) were removed as this column functions as the model input\nA stratified sample of 2,000 records was extracted to preserve class distribution\nTrain/test split: 1,600 training / 400 test reviews (80/20, random seed 42)\nClass weights were applied to penalise misclassifications in the minority class (Not Recommended)\nBERT tokenisation used WordPiece Tokenizer (30,522 tokens); truncation threshold set at 128 tokens based on median review length analysis\n\n\n\nModel Training & Prompting\n\nBERT was fine-tuned using an AdamW optimiser (corrects weight decay issues present in standard Adam) at a learning rate of 2e-5 and batch size of 16, trained over 3 epochs\nLLaMA3 was evaluated locally via zero-shot prompting using a structured prompt with three elements:\n\n\n\n\n\n\n\n\nPrompt Element\nContent\n\n\n\n\nContext\nYou are classifying women’s clothing reviews\n\n\nInstruction\nClassify the review as either RECOMMENDED or NOT RECOMMENDED\n\n\nConstraint\nOnly reply with one of those two labels, nothing else\n\n\n\n\n\nPerformance Metrics\nAccuracy, F1-score, precision, and recall were all assessed. Due to the class imbalance, accuracy alone is insufficient — it risks biasing the model toward the majority class, violating the EU’s Trustworthy AI requirement of Fairness. F1-score was prioritised as the balance between precision and recall."
+  },
+  {
+    "objectID": "projects/project-three/project-three.html#summary-of-findings",
+    "href": "projects/project-three/project-three.html#summary-of-findings",
+    "title": "Ariane Damian",
+    "section": "Summary of Findings",
+    "text": "Summary of Findings\n\nBERT Fine-Tuning\nTraining loss declined consistently across all 3 epochs, demonstrating genuine learning rather than memorisation. Key loss comparisons:\n\n\n\n\nStarting Loss\nEnding Loss\nLoss Reduction\n\n\n\n\n1 Epoch\n0.6186\n0.3705\n0.2461\n\n\n3 Epochs\n0.5604\n0.0174\n0.5430\n\n\n\n\nTraining on 3 epochs yielded a loss reduction nearly twice that of 1 epoch\nSome volatility remained at the 3rd epoch, suggesting scope for further refinement\n\n\n\nBERT Evaluation Results\nBERT performed strongly for the majority class (Recommended) and respectably for the minority class (Not Recommended):\n\n\n\n\n\n\n\n\n\n\nMetric\nRecommended (1)\nNot Recommended (0)\nMacro Avg\nWeighted Avg\n\n\n\n\nF1-Score\n0.95\n0.76\n0.85\n0.92\n\n\nPrecision\n0.94\n0.80\n0.87\n0.92\n\n\nRecall\n0.96\n0.72\n0.84\n0.92\n\n\n\n\nPrecision outperforms recall for the minority class (0.80 vs 0.72) — the model accurately flags negatives but misses 28% of actual negatives\nOverall accuracy: 91.75%\n\n\n\nLLaMA3 Zero-Shot Evaluation Results\nLLaMA3 demonstrated high recall for Not Recommended (0.97) but very low precision (0.57) — indicating it over-identifies negative reviews, classifying 43% as false positives:\n\n\n\n\n\n\n\n\n\n\nMetric\nRecommended (1)\nNot Recommended (0)\nMacro Avg\nWeighted Avg\n\n\n\n\nF1-Score\n0.91\n0.72\n0.81\n0.87\n\n\nPrecision\n0.99\n0.57\n0.78\n0.92\n\n\nRecall\n0.83\n0.97\n0.90\n0.86\n\n\n\n\nOverall accuracy: 86.00%\nHigh recall bias toward Not Recommended likely a consequence of the absence of fine-tuning\n\n\n\nHead-to-Head Comparison\n\n\n\nMetric\nBERT\nLLaMA3\n\n\n\n\nOverall Accuracy\n91.75%\n86.00%\n\n\nMacro F1\n0.85\n0.81\n\n\nPrecision — Not Recommended\n0.80\n0.57\n\n\nRecall — Not Recommended\n0.72\n0.97\n\n\nTraining Required\nYes (30 min)\nNo\n\n\n\n\nBERT outperforms LLaMA3 across accuracy, Macro F1, and precision for negative sentiment\nLLaMA3 achieves competitive results without any training or labelled data"
+  },
+  {
+    "objectID": "projects/project-three/project-three.html#discussion",
+    "href": "projects/project-three/project-three.html#discussion",
+    "title": "Ariane Damian",
+    "section": "Discussion",
+    "text": "Discussion\n\nBusiness Relevance\n\nFor e-commerce organisations, LLaMA3 is the more accessible option — requiring no data labelling, training infrastructure, or deep technical knowledge\nHowever, BERT is substantially more reliable at detecting genuine negative reviews, which carries real operational risk if misclassified (e.g. misdirected resources, unnecessary escalations)\nA practical compromise is DistilBERT — a derivative of BERT operating at 97% of its capacity, 60% faster and 40% smaller — prioritising rapid deployment over exhaustive complexity\n\n\n\nEthics & Responsible AI\n\nThe dataset is anonymised and from an authentic source — consistent with EU Trustworthy AI requirements under Privacy and Data Governance\nClass imbalance introduces bias risk, particularly violating the Fairness principle if the minority class is under-represented in training\nLLaMA3’s zero-shot bias toward negative classification raises additional concerns around reliability in production environments"
+  },
+  {
+    "objectID": "projects/project-three/project-three.html#recommendations",
+    "href": "projects/project-three/project-three.html#recommendations",
+    "title": "Ariane Damian",
+    "section": "Recommendations",
+    "text": "Recommendations\nThe following directions are recommended for future work and deployment considerations:\n\nEvaluate DistilBERT as a production-ready alternative to BERT — nearly equivalent performance at significantly lower resource cost\nExplore few-shot prompting with LLaMA3 to assess whether providing examples improves precision for the minority class\nConduct hyperparameter tuning on BERT (learning rate, batch size, sample size) to address remaining volatility at epoch 3\nEstablish a control group (no class weights) to formally measure the impact of class weighting on model performance\nExtend to multi-class sentiment classification to explore whether the metric uniformity observed in weighted averages persists across more than two labels\n\n\n\n\n\n\n\nNote\n\n\n\nBERT demonstrated stronger and more balanced performance for the binary classification objective, with higher accuracy and more reliable detection of negative sentiment. LLaMA3’s zero-shot results, while slightly weaker, highlight the growing potential of generative models for classification tasks — particularly in resource-constrained or low-expertise environments."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hi! I’m Ariane",
+    "section": "",
+    "text": "Welcome!\n\n     \n\n\n\nHi! I’m Ariane\n\nScientist, Engineer, and Analyst\n\n\n\n\n\n\n\n\n\n  \n    \n    about\n  \n  \n    \n    links\n  \n  \n    \n    work\n  \n  \n    \n    contact\n  \n\n\n\n\n  \n    about\n    ✕\n  \n  \n    \n      Hi, I'm Ariane!\n      \n    \n    A Chemical and Pharmaceutical Graduate with a passion for data and visualisation! Currently, I'm completeting my master's degree in Business Analytics in hopes of combining my scientific and engineering background with my interest in uncovering insights/patterns in data to make a positive impact.\n  \n\n\n\n\n  \n    links\n    ✕\n  \n  \n    \n      \n        GitHub\n      \n      \n        LinkedIn\n      \n      \n        CV\n      \n    \n  \n\n\n\n\n  \n    work\n    ✕\n  \n  \n\n    \n    \n\n      \n      \n        1 / 4\n        Fraud Analysis\n        \n        Analyses the prevalance of fraud in financial datasets, utlising only Power BI for data-mining. Click the title to learn more!\n      \n\n      \n      \n        2 / 4\n        Yelp Star Ratings\n        \n         Applies a CBL approach to predict Yelp star ratings using different regression models executed in Python. Click the title to learn more!\n      \n\n      \n      \n        3 / 4\n        E-commerce Sentiment Analysis\n        \n         Compares the performance of transformer-based NLP models for sentiment analysis in e-commerce reviews. Click the title to learn more!\n      \n\n      \n      \n        4 / 4\n        Personal Reflection\n        It's been an incredible journey creating this website. The entire process has really pushed me to experiment outside of my comfort zone and I owe it all to the wonderful support and guidance of my lecturer.\n           Each element from start to finish, while incredibly challenging, was also simultaneously rewarding. My self-confidence regarding coding languages, particularly HTML/CSS has grown tremendously throughout this process, and I'm grateful for the opportunity to showcase my work.\n             This is perhaps one of the rare occasions that I've used coding for fun and creativity, rather than just for academic and work purposes. I'm especially proud of the pop-up windows and quirky sounds, and I hope that whoever comes across this site gets the same level of enjoyment I did when interacting with all the elements :D.\n             PS: Try popping the bubbles in the background! \n      \n    \n\n    \n    ‹\n    ›\n\n  \n\n\n\n\n  \n    contact\n    ✕\n  \n  \n    Get in touch!\n    The best way to reach me is by email:\n    ariane.damian2@gmail.com\n  \n\n\n\n\n  \n    project\n    ✕\n  \n  \n    \n      \n      Loading...\n    \n  \n\n\n\n\n\n\n© 2026 Ariane Damian · Built with Quarto"
   },
   {
     "objectID": "about.html",
@@ -28,24 +63,73 @@
     "text": "About this site"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hi! I’m Ariane",
-    "section": "",
-    "text": "Welcome!\n\n     \n\n\n\nHi! I’m Ariane\n\nScientist, Engineer, and Analyst\n\n\n\n\n\n\n\n\n\n  \n    \n    about\n  \n  \n    \n    links\n  \n  \n    \n    work\n  \n  \n    \n    contact\n  \n\n\n\n\n  \n    about\n    ✕\n  \n  \n    \n      Hi, I'm Ariane!\n      \n    \n    A Chemical and Pharmaceutical Graduate with a passion for data and visualisation! Currently, I'm completeting my master's degree in Business Analytics in hopes of combining my scientific and engineering background with my interest in uncovering insights/patterns in data to make a positive impact.\n  \n\n\n\n\n  \n    links\n    ✕\n  \n  \n    \n      \n        GitHub\n      \n      \n        LinkedIn\n      \n      \n        CV\n      \n    \n  \n\n\n\n\n  \n    work\n    ✕\n  \n  \n\n    \n    \n\n      \n      \n        1 / 4\n        Fraud Analysis\n        \n        Description. Click the title to learn more!\n      \n\n      \n      \n        2 / 4\n        Yelp Star Ratings\n        \n        Description. Click the title to learn more!\n      \n\n      \n      \n        3 / 4\n        E-commerce Sentiment Analysis\n        \n         Description Click the title to learn more!\n      \n\n      \n      \n        4 / 4\n        Personal Reflection\n        It's been an incredible journey creating this website. The entire process has really pushed me to experiment outside of my comfort zone and I owe it all to the wonderful support and guidance of my lecturer.\n           Each element from start to finish, while incredibly challenging, was also simultaneously rewarding. My self-confidence regarding coding languages, particularly HTML/CSS has grown tremendously throughout this process, and I'm grateful for the opportunity to showcase my work.\n             This is perhaps one of the rare occasions that I've used coding for fun and creativity, rather than just for academic and work purposes. I'm especially proud of the pop-up windows and quirky sounds, and I hope that whoever comes across this site gets the same level of enjoyment I did when interacting with all the elements :D.\n      \n    \n\n    \n    ‹\n    ›\n\n  \n\n\n\n\n  \n    contact\n    ✕\n  \n  \n    Get in touch!\n    The best way to reach me is by email:\n    ariane.damian2@gmail.com\n  \n\n\n\n\n\n\n© 2025 Ariane Damian · Built with Quarto"
+    "objectID": "projects/project-one/project-one.html#fictitious-finances-facts-and-fallacies-on-fraud",
+    "href": "projects/project-one/project-one.html#fictitious-finances-facts-and-fallacies-on-fraud",
+    "title": "Ariane Damian",
+    "section": "Fictitious Finances: Facts and Fallacies on Fraud",
+    "text": "Fictitious Finances: Facts and Fallacies on Fraud\n\nMSc Business Analytics · Fraud Analysis · Ariane Damian · Dec. 03, 2025"
   },
   {
-    "objectID": "projects/project-one/index.html",
-    "href": "projects/project-one/index.html",
-    "title": "Project One",
-    "section": "",
-    "text": "Description."
+    "objectID": "projects/project-one/project-one.html#introduction",
+    "href": "projects/project-one/project-one.html#introduction",
+    "title": "Ariane Damian",
+    "section": "Introduction",
+    "text": "Introduction\nFraud has existed since ancient times, with detection and prevention methods evolving in parallel. The digital age has dramatically accelerated both the sophistication of fraud and the tools used to combat it.\nThis report analyses a financial dataset to:\n\nIdentify demographics most susceptible to committing financial crimes\nFlag key parameters indicating suspicious or fraudulent behaviour\nPerform correlation and outlier analysis\nLay the groundwork for a future predictive fraud detection model"
   },
   {
-    "objectID": "projects/project-one/index.html#overview",
-    "href": "projects/project-one/index.html#overview",
-    "title": "Project One",
-    "section": "",
-    "text": "Description."
+    "objectID": "projects/project-one/project-one.html#methodology",
+    "href": "projects/project-one/project-one.html#methodology",
+    "title": "Ariane Damian",
+    "section": "Methodology",
+    "text": "Methodology\n\nData Preparation\n\nNo missing values were identified in the dataset\nNumeric currency columns were formatted as Currency; other numeric columns retained as Whole Number or Decimal\nBinary (0/1) columns were converted to Yes/No for Power BI visualisation\nVariables such as Age, Credit Score, and Account Age were grouped into categories for more effective analysis\n\n\n\nKey Statistical Analysis\nThe following statistical methods were applied:\n\n\n\n\n\n\n\nMethod\nPurpose\n\n\n\n\nMean, Median, Standard Deviation\nSummarise central tendency and spread\n\n\nCorrelation Analysis\nDetermine existence and strength of variable relationships\n\n\nInterquartile Range (IQR)\nIdentify outliers and understand data distribution"
+  },
+  {
+    "objectID": "projects/project-one/project-one.html#summary-of-findings",
+    "href": "projects/project-one/project-one.html#summary-of-findings",
+    "title": "Ariane Damian",
+    "section": "Summary of Findings",
+    "text": "Summary of Findings\n\nBasic Demographic Overview\nFraud rate and median transaction amounts were examined across key demographic groups.\n\n\n\n\n\n\n\nDemographic\nKey Observation\n\n\n\n\nAge 70+\nFraud cases exceed non-fraud cases — mirrors real-world research on older adults’ vulnerability\n\n\nAge 90+\nHighest median fraudulent transaction amount, but likely an outlier effect (&lt;1% of total data)\n\n\nCredit Score\nLower (worst-performing) credit score groups show higher fraud frequency\n\n\nEducation — PhD\nLowest fraud rate but highest fraud value — fraud is rare but high-value\n\n\nGender / Device Type\nMinimal differences observed across groups\n\n\n\n\n\nOther relevant findings include\n\nTransaction thresholds (upper limit ~€6,000) and outlier patterns provide useful signals for fraud detection\nCorrelation analysis revealed mostly weak relationships, with the most actionable being income–fraud and loan amount–fraud connections\nWhile IQR is effective for identifying unusual figures in some variables, it is not universally applicable. Fraud can and does occur within “normal” data ranges."
+  },
+  {
+    "objectID": "projects/project-one/project-one.html#recommendations",
+    "href": "projects/project-one/project-one.html#recommendations",
+    "title": "Ariane Damian",
+    "section": "Recommendations",
+    "text": "Recommendations\nThe following improvements are recommended for future analysis and model development:\n\nIncorporate regression coefficients and confidence intervals for more rigorous statistical analysis\nPerform complete outlier removal to improve model accuracy\nExpand outlier analysis beyond IQR to include Z-scores and multivariate methods\nApply findings to machine learning algorithms to build a robust, predictive fraud detection model\nConsider additional variables not fully explored in this report to reduce noise and improve signal detection\n\n\n\n\n\n\n\nNote\n\n\n\nAll analytical factors identified in this project — demographic patterns, correlation signals, and outlier thresholds — can serve as inputs for machine learning models capable of more sophisticated and automated fraud detection."
+  },
+  {
+    "objectID": "projects/project-two/project-two.html#an-examination-into-star-ratings-based-on-the-official-yelp-dataset",
+    "href": "projects/project-two/project-two.html#an-examination-into-star-ratings-based-on-the-official-yelp-dataset",
+    "title": "Ariane Damian",
+    "section": "An Examination into Star Ratings Based on the Official Yelp Dataset",
+    "text": "An Examination into Star Ratings Based on the Official Yelp Dataset\n\nMSc Business Analytics · Business Analytics Project · Ariane Damian · Dec. 02, 2025"
+  },
+  {
+    "objectID": "projects/project-two/project-two.html#introduction",
+    "href": "projects/project-two/project-two.html#introduction",
+    "title": "Ariane Damian",
+    "section": "Introduction",
+    "text": "Introduction\nReputation is a direct reflection of a business’ performance, influencing consumer behaviour through perceived image, reliability, and quality. With the proliferation of technology, online review platforms have become essential for determining business reputation — and Yelp is one of the most established.\nThis report analyses the official Yelp dataset to:\n\nUnderstand the distribution of businesses, star ratings, and reviews across the platform\nIdentify key attributes and characteristics that influence star ratings\nApply and evaluate regression models to predict star ratings\nPropose a new analytics-based business model for Yelp centred on Star Rating Prediction"
+  },
+  {
+    "objectID": "projects/project-two/project-two.html#methodology",
+    "href": "projects/project-two/project-two.html#methodology",
+    "title": "Ariane Damian",
+    "section": "Methodology",
+    "text": "Methodology\n\nData Preparation\n\nRaw dataset consisted of approximately 150,000 rows and 14 columns\nMissing and null values were removed\nColumns hours, address, and postal_code were excluded as irrelevant to the target variable\nCategories and Attributes were split by frequency into 12 key categories and 33 key attributes\nFinal cleaned dataset: 150,243 rows and 56 columns\n\n\n\nModelling Techniques\nThree regression models were applied to predict Star Rating:\n\n\n\n\n\n\n\nModel\nPurpose\n\n\n\n\nLinear Regression (LR)\nBaseline model; explores possible linear relationships between variables and star rating\n\n\nRandom Forest Regression (RFR)\nHandles non-linear relationships; robust to outliers and missing data\n\n\nGradient Boosting Regression (GBR)\nAdvanced model; iteratively corrects errors to maximise predictive accuracy"
+  },
+  {
+    "objectID": "projects/project-two/project-two.html#summary-of-findings",
+    "href": "projects/project-two/project-two.html#summary-of-findings",
+    "title": "Ariane Damian",
+    "section": "Summary of Findings",
+    "text": "Summary of Findings\n\nExploratory Data Analysis\nPatterns in business distribution, star ratings, and attributes were examined across the dataset.\n\n\n\n\n\n\n\nFinding\nKey Observation\n\n\n\n\nBusiness Categories\nFood & Restaurants dominates with ~65,000 businesses — a heavily saturated market\n\n\nStar Ratings\nMost businesses rated between 3–4.5 stars; 4 stars is the most common\n\n\nCategory vs. Rating\nMost categories cluster near the 3.6 average — the individual business, not its category, drives rating\n\n\nReview Count\nMost businesses receive very few reviews; review count does not significantly correlate with star rating\n\n\nBusiness Attributes\nMost attributes (e.g. outdoor seating, delivery, bike parking), when present, are associated with higher ratings\n\n\n\n\n\nOther relevant findings include\n\nThe market for Pets and Hotels/Travel categories is less saturated, offering greater opportunity for smaller businesses to build customer relationships\nLow review counts may indicate low visibility or neutral satisfaction — both addressable through Yelp’s advertising and analytics services\nGrowing the review sample size by increasing customer engagement would also improve the accuracy of the Star Rating Prediction model over time\n\n\n\n\nRegression Analysis\nAll three models were evaluated using R², Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE).\n\n\n\n\n\n\n\nModel\nPerformance Summary\n\n\n\n\nLinear Regression\nWeakest performer; lowest R², highest MAE & RMSE; ~1 star average deviation\n\n\nRandom Forest\nSlightly better overall; still approximately 1 star deviation across both datasets\n\n\nGradient Boosting\nMarginal improvements in some metrics; not decisively better than RFR\n\n\n\n\nRandom Forest Regression was identified as the most robust model, though differences between models were marginal\n\n\n\n\n\n\n\nImportant\n\n\n\nAll models are limited to business-level data; incorporating review text sentiment and pricing information would likely improve predictions substantially."
+  },
+  {
+    "objectID": "projects/project-two/project-two.html#recommendations",
+    "href": "projects/project-two/project-two.html#recommendations",
+    "title": "Ariane Damian",
+    "section": "Recommendations",
+    "text": "Recommendations\nThe following improvements and opportunities are recommended for Yelp and future model development:\n\nDevelop a premium Star Rating Prediction service that businesses can subscribe to for performance forecasting and improvement guidance\nUse Star Rating predictions internally to refine Yelp’s ranking algorithms and “Best of Yelp” promotional lists\nIncorporate review text sentiment analysis and price-level data to significantly improve model accuracy\nExpand modelling to address class imbalance in ratings (few low-rated businesses) and category imbalance (dominance of food businesses)\nOffer targeted advertising services to businesses with low review counts to increase visibility and grow the dataset"
   }
 ]

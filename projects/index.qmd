@@ -1,8 +1,0 @@
----
-title: "Projects"
-listing:
-  contents: 
-    - project-one/index.qmd
-    - project-two/index.qmd
-  type: grid
----
